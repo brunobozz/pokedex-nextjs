@@ -11,10 +11,10 @@ export default function PokemonImage(props) {
   return (
     <div className={styles.card_img}>
       <div className={styles.card_img_actions}>
-        <Link href={"/pokemon/" + (props.pokeId - 1)}>
+        <Link href={"/pokemon?id=" + (props.pokeId - 1)}>
           <i className="fa fa-chevron-left"></i>
         </Link>
-        <Link href={"/pokemon/" + (props.pokeId + 1)}>
+        <Link href={"/pokemon?id=" + (props.pokeId + 1)}>
           <i className="fa fa-chevron-right"></i>
         </Link>
       </div>

@@ -1,3 +1,4 @@
+import CircleType from "../circleType/circleType";
 import styles from "./pokemonInfo.module.scss";
 
 export default function PokemonInfo(props) {
@@ -16,7 +17,20 @@ export default function PokemonInfo(props) {
         }
       >
         <span className="fw-bold">Type</span>
-        {/* <span className="fw-bold">{props.pokeType}</span> */}
+        <div className="d-flex">
+          {props.pokemon.pokemon_v2_pokemontypes.map((type, index) => (
+            <div
+              key={index}
+              className={
+                "d-flex align-items-center ms-2 ps-0 badge bg-type-" +
+                type.pokemon_v2_type.name
+              }
+            >
+              <CircleType type={type.pokemon_v2_type.name}></CircleType>
+              <span>{type.pokemon_v2_type.name}</span>
+            </div>
+          ))}
+        </div>
       </li>
       <li
         className={
@@ -25,7 +39,7 @@ export default function PokemonInfo(props) {
         }
       >
         <span className="fw-bold">Weight</span>
-        {/* <span>{props.pokemon.weight} lbs.</span> */}
+        <span>{props.pokemon.weight} lbs.</span>
       </li>
       <li
         className={
@@ -34,7 +48,7 @@ export default function PokemonInfo(props) {
         }
       >
         <span className="fw-bold">Height</span>
-        {/* <span>{props.pokemon.height} f.</span> */}
+        <span>{props.pokemon.height} f.</span>
       </li>
       <li
         className={
@@ -43,7 +57,7 @@ export default function PokemonInfo(props) {
         }
       >
         <span className="fw-bold">Base Experience</span>
-        {/* <span>{props.pokemon.base_experience}</span> */}
+        <span>{props.pokemon.base_experience}</span>
       </li>
       <li
         className={
@@ -52,11 +66,11 @@ export default function PokemonInfo(props) {
         }
       >
         <span className="fw-bold">Abilities</span>
-        {/* <ul>
+        <ul>
           {props.pokemon.pokemon_v2_pokemonabilities.map((ability, index) => (
             <li key={index}>{ability.pokemon_v2_ability.name}</li>
           ))}
-        </ul> */}
+        </ul>
       </li>
     </ul>
   );
