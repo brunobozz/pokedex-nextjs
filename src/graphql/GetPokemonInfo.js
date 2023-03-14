@@ -42,7 +42,5 @@ export async function getPokemonInfo(id) {
 
   const data = await graphQLClient.request(query);
 
-  console.log(data.pokemon_v2_pokemon[0]);
-
   return data.pokemon_v2_pokemon[0];
 }

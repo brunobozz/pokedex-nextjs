@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getPokemonInfo } from "@/graphql/GetPokemonInfo";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import styles from "./pokemon.module.scss";
 import PokemonHeader from "@/components/pokemonHeader/pokemonHeader";
 import PokemonImage from "@/components/pokemonImage/pokemonImage";
@@ -23,17 +24,24 @@ function Pokemon() {
   if (pokemon) {
     let type = pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name;
     return (
-      <main className={styles.pokebg + " bg-type-" + type}>
-        <div className={styles.card + " border-0"}>
-          <PokemonHeader
-            pokeType={type}
-            pokeId={pokemon.id}
-            pokeName={pokemon.name}
-          ></PokemonHeader>
-          <PokemonImage pokeId={pokemon.id} pokeType={type}></PokemonImage>
-          <PokemonInfo pokemon={pokemon} pokeType={type}></PokemonInfo>
-        </div>
-      </main>
+      <>
+        <Head>
+          <title>
+            {pokemon.id} - {pokemon.name}
+          </title>
+        </Head>
+        <main className={styles.pokebg + " bg-type-" + type}>
+          <div className={styles.card + " border-0"}>
+            <PokemonHeader
+              pokeType={type}
+              pokeId={pokemon.id}
+              pokeName={pokemon.name}
+            ></PokemonHeader>
+            <PokemonImage pokeId={pokemon.id} pokeType={type}></PokemonImage>
+            <PokemonInfo pokemon={pokemon} pokeType={type}></PokemonInfo>
+          </div>
+        </main>
+      </>
     );
   }
 }
